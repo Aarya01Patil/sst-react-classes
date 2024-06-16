@@ -32,7 +32,7 @@ function ProductCard({ title, price }) {
   return (
     <div className="product-card">
       <p onClick={printTitle}> {title}</p>
-      <p ref={pRef}> {price}</p>
+      <p ref={pRef}> {price.value}</p>
       <img src={logo1} />
       <input type="text" onChange={displayOutput} ref={iRef} value={inputV} />
       <p ref={oRef}>Over here the output would arrive - {inputV}</p>
