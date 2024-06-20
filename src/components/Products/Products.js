@@ -2,7 +2,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import Effect from "../Effect/Effect";
 import { useState, useEffect } from "react";
 import useWindowSize from "../../hooks/useWindowSize";
-function Products() {
+function Products({cart, increaseQuantity, decreaseQuantity}) {
     // const products = [
     //       {
     //         id: 1,
@@ -41,7 +41,7 @@ function Products() {
 
   console.log(useWindowSize());
   useEffect(() => {
-    fetch("https://run.mocky.io/v3/279c028e-f492-4e0f-932b-51dbed1b1dce").then(
+    fetch("https://602fc537a1e9d20017af105e.mockapi.io/api/v1/products").then(
       (response) => {
         return response.json();
       }
@@ -57,7 +57,7 @@ function Products() {
           <div><Effect /></div>
             {
                 products.map(function (item, index) {
-                  return (<ProductCard key={index}  title={item.title} price={item.price} />)
+                  return (<ProductCard key={index}  product={item}  cart={cart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/>)
                 })
             }
         </div>
