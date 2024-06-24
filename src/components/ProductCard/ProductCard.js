@@ -11,16 +11,22 @@ function ProductCard({ product }) {
   let [inputV, setInputV] = useState('Class');
   console.log("pc", product.id)
 
+  // setInput(value);
   function printTitle() {
+    // console.log("printTitle");
+    // console.log(pRef.current.innerText);
     if (pRef.current.style.display === "none") {
       pRef.current.style.display = "block";
     } else {
       pRef.current.style.display = "none";
     }
   }
-
+  // console.log("Rerendered", inputV);
   function displayOutput(e) {
-
+    // console.log(iRef.current);
+    // console.log(oRef.current);
+    // oRef.current.innerText = `Output here: ${ iRef.current.value }`;
+    // oRef.current.innerText = oRef.current.innerText + iRef.current.value;
     setInputV(e.target.value);
   }
 
