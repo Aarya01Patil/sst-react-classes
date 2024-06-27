@@ -1,49 +1,47 @@
 import './App.css';
-import { a, b } from './components/Products/Products';
-import Products from './components/Products/Products';
-import { useState } from 'react';
-import CartContext from './context/CartContext';
+import Products from './components/Products/Products.js';
+import { useState, useEffect } from 'react';
+import CartContext from './context/CartContext.js';
+
 function App() {
-  // state variable
-  // inc
-  // dec
-  let [cart, setCart] = useState({});
+
+  const [cart, setCart] = useState({});
   function increaseQuantity(product) {
-    const newCart = { ...cart };
-    // if(cart[product.id])
-    if (!newCart[product.id]) {
-      newCart[product.id] = {
-        ...product,
-        quantity: 0
-      };
-    }
-    newCart[product.id].quantity += 1;
-    console.log(newCart);
+    const newCart = {...cart};
+    if (!newCart[product.title]) {
+      newCart[product.title] = { ...product, quantity:0};
+    } 
+    newCart[product.title].quantity += 1;
+    
     setCart(newCart);
   }
 
   function decreaseQuantity(product) {
-    const newCart = { ...cart };
-    if (!newCart[product.id]) return;
-    newCart[product.id].quantity -= 1;
-    if (newCart[product.id].quantity <= 0) {
-      delete newCart[product.id];
-    }
+
+    const newCart = {...cart};
+
+    if (!newCart[product.title]) return;
+
+    newCart[product.title].quantity -= 1;
+    if (newCart[product.title].quantity <= 0) {
+      delete newCart[product.title];
+    } 
+    
     setCart(newCart);
   }
 
-  console.log(a, b);
+
+  
   return (
-    <CartContext.Provider value={{ cart, increaseQuantity, decreaseQuantity}}>
-      <div className="App">
-        <Products  />
-      </div>
+    <CartContext.Provider value={{cart,increaseQuantity,decreaseQuantity}}>
+        <div className="App">
+          <Products />
+        </div>
     </CartContext.Provider>
   );
 }
 
 export default App;
-
 // Global Parent
 // Global state
 // way to manipulate the state
