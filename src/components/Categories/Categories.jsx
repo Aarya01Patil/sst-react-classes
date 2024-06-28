@@ -1,17 +1,13 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loadCategories } from "../../stores/Categories";
+
 function Categories({onSelectCategory}){
-    const [categories, setCategories] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
+    let dispatch = useDispatch();
+    const categories = useSelector((state)=> state.categories.categories);
     useEffect(()=>{
-        fetch("https://667d9edc297972455f65d371.mockapi.io/api/v1/categories/").then(
-            (response) => {
-                return response.json();
-            }
-        ).then((res)=>{
-            setCategories(res);
-        })
+        dispatch(loadCategories());
     },[])
-    console.log(categories);
     return(
         <div>
             <h1>Category</h1>

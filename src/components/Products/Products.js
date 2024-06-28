@@ -34,9 +34,6 @@ function Products() {
             <div /* style={{display: "flex", justifyContent:"space-between"}} */>
                 <Categories onSelectCategory={handleCategory} />
             </div>
-            
-            <hr />
-            <hr />
             <div className="productcard-container">
                 {
                     filteredProducts.map((item, index) => (
